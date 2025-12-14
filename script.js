@@ -528,7 +528,37 @@ function displayResults(result) {
     </div>`;
     html += '</div>';
 
-    // 计算公式说明
+    // 添加图表容器（最先显示）
+    html += '<div style="margin-top: 30px;"><strong style="color: #0969da; font-weight: 600;">📈 逐年趋势图</strong></div>';
+    html += '<div id="chart-container" style="width: 100%; height: 500px; margin-top: 20px;"></div>';
+
+    // 详细表格（第二显示）
+    html += '<div style="margin-top: 30px;"><strong style="color: #0969da; font-weight: 600;">📊 逐年明细表</strong></div>';
+    html += '<div class="table-container">';
+    html += '<table>';
+    html += '<thead><tr>';
+    html += '<th>年份</th>';
+    html += '<th>年初余额</th>';
+    html += '<th>年利息收入</th>';
+    html += '<th>年支出</th>';
+    html += '<th>年末余额</th>';
+    html += '</tr></thead>';
+    html += '<tbody>';
+
+    result.results.forEach(row => {
+        html += '<tr>';
+        html += `<td>第 ${row.year} 年</td>`;
+        html += `<td>${formatNumber(row.initialBalance)}</td>`;
+        html += `<td>${formatNumber(row.interest)}</td>`;
+        html += `<td>${formatNumber(row.withdrawal)}</td>`;
+        html += `<td>${formatNumber(row.finalBalance)}</td>`;
+        html += '</tr>';
+    });
+
+    html += '</tbody></table>';
+    html += '</div>';
+
+    // 计算公式说明（最后显示）
     html += '<div class="formula-section">';
     html += '<h3>📐 计算公式与过程</h3>';
     html += `<div style="margin-bottom: 10px; color: #0969da; font-weight: 500;">${result.type}</div>`;
@@ -584,36 +614,7 @@ function displayResults(result) {
     html += `最终余额 = P<sub>${(result.years + 1).toFixed(0)}</sub> = ${formatNumber(result.finalAmount || 0)}<br>`;
     html += '</div>';
     html += '</div>';
-
-    // 详细表格
-    html += '<div style="margin-top: 20px;"><strong style="color: #0969da; font-weight: 600;">📊 逐年明细表</strong></div>';
-    html += '<div class="table-container">';
-    html += '<table>';
-    html += '<thead><tr>';
-    html += '<th>年份</th>';
-    html += '<th>年初余额</th>';
-    html += '<th>年利息收入</th>';
-    html += '<th>年支出</th>';
-    html += '<th>年末余额</th>';
-    html += '</tr></thead>';
-    html += '<tbody>';
-
-    result.results.forEach(row => {
-        html += '<tr>';
-        html += `<td>第 ${row.year} 年</td>`;
-        html += `<td>${formatNumber(row.initialBalance)}</td>`;
-        html += `<td>${formatNumber(row.interest)}</td>`;
-        html += `<td>${formatNumber(row.withdrawal)}</td>`;
-        html += `<td>${formatNumber(row.finalBalance)}</td>`;
-        html += '</tr>';
-    });
-
-    html += '</tbody></table>';
-    html += '</div>';
     
-    // 添加图表容器
-    html += '<div style="margin-top: 30px;"><strong style="color: #0969da; font-weight: 600;">📈 逐年趋势图</strong></div>';
-    html += '<div id="chart-container" style="width: 100%; height: 500px; margin-top: 20px;"></div>';
     html += '</div>';
 
     resultsDiv.innerHTML = html;
