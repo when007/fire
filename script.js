@@ -490,9 +490,9 @@ function displayResults(result) {
     
     // 检查最终余额是否为负
     if (result.finalAmount < 0) {
-        html += `<div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); padding: 15px; margin-bottom: 20px; border-radius: 2px;">
-            <strong style="color: #ff6b6b;">⚠️ 警告</strong><br>
-            <p style="margin: 10px 0 0 0; color: #ff6b6b;">
+        html += `<div style="background: #fff1f2; border: 1px solid #ff8182; padding: 15px; margin-bottom: 20px; border-radius: 6px;">
+            <strong style="color: #cf222e;">⚠️ 警告</strong><br>
+            <p style="margin: 10px 0 0 0; color: #cf222e;">
                 在 ${result.years.toFixed(1)} 年后，余额将为负值（${formatNumber(result.finalAmount)}）。<br>
                 年支出过高，无法维持 ${result.years.toFixed(1)} 年。<br>
                 <strong>建议：</strong>调整年支出、初始金额、利率或生存年数。
@@ -531,7 +531,7 @@ function displayResults(result) {
     // 计算公式说明
     html += '<div class="formula-section">';
     html += '<h3>📐 计算公式与过程</h3>';
-    html += `<div style="margin-bottom: 10px; color: #00d4ff; font-weight: 500;">${result.type}</div>`;
+    html += `<div style="margin-bottom: 10px; color: #0969da; font-weight: 500;">${result.type}</div>`;
     
     html += '<div class="formula">';
     html += '<strong>FIRE 复利计算模型</strong><br><br>';
@@ -586,7 +586,7 @@ function displayResults(result) {
     html += '</div>';
 
     // 详细表格
-    html += '<div style="margin-top: 20px;"><strong style="color: #00d4ff; font-weight: 500;">📊 逐年明细表</strong></div>';
+    html += '<div style="margin-top: 20px;"><strong style="color: #0969da; font-weight: 600;">📊 逐年明细表</strong></div>';
     html += '<div class="table-container">';
     html += '<table>';
     html += '<thead><tr>';
@@ -612,7 +612,7 @@ function displayResults(result) {
     html += '</div>';
     
     // 添加图表容器
-    html += '<div style="margin-top: 30px;"><strong style="color: #00d4ff; font-weight: 500;">📈 逐年趋势图</strong></div>';
+    html += '<div style="margin-top: 30px;"><strong style="color: #0969da; font-weight: 600;">📈 逐年趋势图</strong></div>';
     html += '<div id="chart-container" style="width: 100%; height: 500px; margin-top: 20px;"></div>';
     html += '</div>';
 
@@ -644,9 +644,9 @@ function initChart(result) {
             text: 'FIRE计划逐年明细趋势',
             left: 'center',
             textStyle: {
-                color: '#00d4ff',
+                color: '#24292f',
                 fontSize: 18,
-                fontWeight: 500
+                fontWeight: 600
             }
         },
         backgroundColor: 'transparent',
@@ -667,7 +667,7 @@ function initChart(result) {
             data: ['年初余额', '年利息收入', '年支出', '年末余额'],
             top: 40,
             textStyle: {
-                color: '#8892b0'
+                color: '#656d76'
             }
         },
         grid: {
@@ -683,11 +683,11 @@ function initChart(result) {
             data: years,
             axisLabel: {
                 rotate: 45,
-                color: '#8892b0'
+                color: '#656d76'
             },
             axisLine: {
                 lineStyle: {
-                    color: '#233554'
+                    color: '#d0d7de'
                 }
             }
         },
@@ -697,16 +697,16 @@ function initChart(result) {
                 formatter: function(value) {
                     return formatNumber(value);
                 },
-                color: '#8892b0'
+                color: '#656d76'
             },
             axisLine: {
                 lineStyle: {
-                    color: '#233554'
+                    color: '#d0d7de'
                 }
             },
             splitLine: {
                 lineStyle: {
-                    color: '#233554'
+                    color: '#d0d7de'
                 }
             }
         },
@@ -717,11 +717,11 @@ function initChart(result) {
                 data: initialBalances,
                 smooth: true,
                 lineStyle: {
-                    color: '#00d4ff',
+                    color: '#0969da',
                     width: 2
                 },
                 itemStyle: {
-                    color: '#00d4ff'
+                    color: '#0969da'
                 },
                 areaStyle: {
                     color: {
@@ -732,10 +732,10 @@ function initChart(result) {
                         y2: 1,
                         colorStops: [{
                             offset: 0,
-                            color: 'rgba(0, 212, 255, 0.3)'
+                            color: 'rgba(9, 105, 218, 0.2)'
                         }, {
                             offset: 1,
-                            color: 'rgba(0, 212, 255, 0.05)'
+                            color: 'rgba(9, 105, 218, 0.05)'
                         }]
                     }
                 }
@@ -745,7 +745,7 @@ function initChart(result) {
                 type: 'bar',
                 data: interests,
                 itemStyle: {
-                    color: '#00ff88'
+                    color: '#1a7f37'
                 }
             },
             {
@@ -753,7 +753,7 @@ function initChart(result) {
                 type: 'bar',
                 data: withdrawals,
                 itemStyle: {
-                    color: '#ff6b6b'
+                    color: '#cf222e'
                 }
             },
             {
@@ -762,11 +762,11 @@ function initChart(result) {
                 data: finalBalances,
                 smooth: true,
                 lineStyle: {
-                    color: '#ffa500',
+                    color: '#bf8700',
                     width: 2
                 },
                 itemStyle: {
-                    color: '#ffa500'
+                    color: '#bf8700'
                 }
             }
         ]
