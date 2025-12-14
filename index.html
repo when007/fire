@@ -75,6 +75,10 @@
             background: #ffffff;
             color: #24292f;
             transition: all 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         input:focus {
@@ -164,7 +168,7 @@
 
         .result-summary {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -177,6 +181,9 @@
             border-radius: 6px;
             text-align: center;
             transition: all 0.2s;
+            overflow: hidden;
+            word-wrap: break-word;
+            word-break: break-all;
         }
 
         .summary-card:hover {
@@ -192,9 +199,13 @@
         }
 
         .summary-card .value {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
             color: #0969da;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            line-height: 1.2;
         }
 
         .table-container {
@@ -209,6 +220,7 @@
             width: 100%;
             border-collapse: collapse;
             background: #ffffff;
+            table-layout: auto;
         }
 
         thead {
@@ -220,6 +232,10 @@
             padding: 12px 15px;
             text-align: right;
             color: #24292f;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            max-width: 200px;
         }
 
         th {
@@ -231,6 +247,7 @@
 
         th:first-child {
             text-align: left;
+            max-width: 100px;
         }
 
         td:first-child {
@@ -297,6 +314,20 @@
 
             .mode-selector {
                 flex-direction: column;
+            }
+
+            .result-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-card .value {
+                font-size: 20px;
+            }
+
+            th, td {
+                padding: 8px 10px;
+                font-size: 13px;
+                max-width: none;
             }
         }
     </style>
